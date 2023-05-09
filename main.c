@@ -9,8 +9,10 @@ void main() {
     printf("P: Print inorder, Q: Quit \n");
     printf("**********************************\n");
     while (1) {
+        fflush(stdin);
         printf("\nCommand> ");
-        c = _getche();
+        c = getchar();
+        getchar();
         c = toupper(c);
         switch (c) {
             case 'R':

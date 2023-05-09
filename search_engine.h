@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+
 // Binary search tree node
 typedef struct tree_node* tree_pointer;
 typedef struct tree_node {
@@ -12,6 +13,11 @@ typedef struct tree_node {
     tree_pointer right;
 } tree_node;
 tree_pointer root; // BST의 root를 가리키는 포인터 (global variable)
+
+typedef struct every_txt {
+    struct tree_node txt[100];
+} every_txt;
+
 
 // 파일에서 단어들을 읽어 이진탐색트리 구성
 int build_dictionary(char* fname);

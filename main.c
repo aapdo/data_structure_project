@@ -1,6 +1,6 @@
 #include "search_engine.h"
 
-void main() {
+int main() {
     char c, fname[20];
     char w1[100], * w2;
     int wcount;

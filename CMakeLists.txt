@@ -3,4 +3,4 @@ project(data_structure_project C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(data_structure_project main.c)
+add_executable(data_structure_project main.c reader/read.h search/search.h search/search_engine.h)

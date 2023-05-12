@@ -1,6 +1,6 @@
 #include "search_engine.h"
 
-void main() {
+int main() {
     char c, fname[20];
     char w1[100], * w2;
     int wcount;
@@ -9,8 +9,10 @@ void main() {
     printf("P: Print inorder, Q: Quit \n");
     printf("**********************************\n");
     while (1) {
+        fflush(stdin);
         printf("\nCommand> ");
-        c = _getche();
+        c = getchar();
+        getchar();
         c = toupper(c);
         switch (c) {
             case 'R':

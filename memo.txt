@@ -1,0 +1,5 @@
+git commit -m "msg"
+git push origin master
+git pull origin master
+
+git switch -c brancheName

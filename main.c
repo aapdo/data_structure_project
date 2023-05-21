@@ -1,4 +1,4 @@
-#include "search_engine.h"
+#include "search/search_engine.h"
 
 int main() {
     char c, fname[20];

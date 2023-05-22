@@ -1,4 +1,4 @@
-#include "search_engine.h"
+#include "search/search_engine.h"
 
 int main() {
     char c, fname[20];
@@ -46,7 +46,7 @@ int build_dictionary(char* fname) {
     char buffer1[100], buffer2[100];
 
     if(fp == NULL) {
-        printf("ÆÄÀÏ ÀÐ±â ½ÇÆÐ\n");
+        printf("ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½\n");
         return -1;
     }
     while(fscanf(fp, "%s %s", buffer1, buffer2) == 2) {

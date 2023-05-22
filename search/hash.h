@@ -7,6 +7,10 @@
 #include <ctype.h>
 
 #define TABLE_SIZE 100
+/**
+ * 테이블 사이즈 고정하지 않아도 됨.
+ * 파일을 읽을 때 개수 구할 수 있음.
+ */
 
 typedef struct Bucket* Bucket_pointer;
 // 해시 테이블의 버킷 구조체

@@ -18,7 +18,7 @@ int main() {
             case 'R':
                 printf("\n Dictionary file name: ");
                 scanf("%s", fname);
-                //wcount = build_dictionary(fname);
+                //wcount = build_dictionary(fname); 미완성
                 printf(" Total number of words: %d \n", wcount);
                 break;
             case 'S':

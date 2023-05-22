@@ -9,6 +9,6 @@
 FILE fOpen(char *fileName, char *mode);
 void fClose(FILE fp);
 char *getInfo();
-void readFile(char fileData[][MAX_FILE_LEN])
+void readFile(char fileData[][MAX_FILE_LEN]);
 
 #endif //DATA_STRUCTURE_PROJECT_READER_H

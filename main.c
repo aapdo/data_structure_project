@@ -18,19 +18,19 @@ int main() {
             case 'R':
                 printf("\n Dictionary file name: ");
                 scanf("%s", fname);
-                wcount = build_dictionary(fname);
+                //wcount = build_dictionary(fname);
                 printf(" Total number of words: %d \n", wcount);
                 break;
             case 'S':
                 printf("\n Word: ");
                 scanf("%s", w1);
-                w2 = bst_search(w1);
+                //w2 = bst_search(w1);
                 if (w2) printf(" Meaning: %s \n", w2);
                 else printf(" No such word ! \n");
                 break;
             case 'P':
                 printf("\n");
-                bst_show_inorder(root);
+                //bst_show_inorder(root);
                 break;
             case 'Q':
                 printf("\n");
@@ -40,6 +40,7 @@ int main() {
     }
 }
 
+<<<<<<< HEAD
 int build_dictionary(char* fname) {
     FILE *fp = fopen(fname, "r");
     int count = 0;
@@ -108,3 +109,5 @@ void bst_show_inorder(tree_pointer ptr) {
         bst_show_inorder(ptr->right);
     }
 }
+=======
+>>>>>>> 8577d236fbd2d030b9cd7cc1d73adafc121464b0

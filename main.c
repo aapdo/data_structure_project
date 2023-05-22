@@ -1,4 +1,4 @@
-#include "search/search_engine.h"
+#include "search/hash.h"
 
 int main() {
     char c, fname[20];
@@ -40,7 +40,7 @@ int main() {
     }
 }
 
-<<<<<<< HEAD
+
 int build_dictionary(char* fname) {
     FILE *fp = fopen(fname, "r");
     int count = 0;
@@ -109,5 +109,3 @@ void bst_show_inorder(tree_pointer ptr) {
         bst_show_inorder(ptr->right);
     }
 }
-=======
->>>>>>> 8577d236fbd2d030b9cd7cc1d73adafc121464b0

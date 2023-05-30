@@ -64,12 +64,6 @@ void readFile(char fileData[][MAX_FILE_LINE_NUM][MAX_FILE_LINE_LEN], char fileNa
             buffer[strcspn(buffer, "\n")] = '\0';
             len = strlen(buffer);
 
-            /*
-            if (j % 2 == 0) {
-                strncpy(fileData[i][j/2], buffer, len);
-                printf("i: %d, %s\n", j/2, fileData[i][j/2]);
-            }
-             */
 
             strncpy(fileData[i][j], buffer, len);
             printf("i: %d, %s\n", j, fileData[i][j]);

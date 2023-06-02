@@ -2,7 +2,7 @@
 #define DATA_STRUCTURE_PROJECT_HASHDATASTRUCTURE_H
 
 #include "../utils.h"
-
+#include "../data.h"
 
 
 

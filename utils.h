@@ -8,15 +8,15 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
-//ÃÖ´ë ÆÄÀÏ °³¼ö
+//ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define MAX_FILE_NUM 150
-//ÆÄÀÏ ³» ÃÖ´ë ÁÙ ¼ö
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ ï¿½ï¿½
 #define MAX_FILE_LINE_NUM 851
 
-//ÆÄÀÏ ÀÌ¸§ÀÇ ÃÖ´ë ±ÛÀÚ ¼ö
+//ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 #define MAX_FILE_NAME_LEN 13
 
-//°¢ ÁÙÀÇ ÃÖ´ë ±ÛÀÚ ¼ö
+//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 #define MAX_FILE_LINE_LEN 200
 //hashSize
 #define hashSize 10000
@@ -50,7 +50,7 @@ typedef struct tree_node {
 extern char fileNames[MAX_FILE_NUM][MAX_FILE_NAME_LEN];
 extern char fileData[MAX_FILE_NUM][MAX_FILE_LINE_NUM][MAX_FILE_LINE_LEN];
 extern word_pointer hashTable[hashSize][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
-extern int compare; // ºñ±³¿¬»êÈ½¼ö
+extern int compare; // ï¿½ñ±³¿ï¿½ï¿½ï¿½È½ï¿½ï¿½
 extern char oneWord[15];
 
 #endif //DATA_STRUCTURE_PROJECT_UTILS_H

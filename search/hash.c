@@ -18,16 +18,13 @@ void hashInit() {
 }
 
 int hash(char* word) {
-    int hashVal = 0;
-    int i = 0;
+    int sum = 0;
 
-    while (word[i] != '\0') {
-        hashVal = (hashVal << 5) + word[i];
-        compare++;
-        i++;
+    while (*word) {
+        sum += *word++;
     }
 
-    return (hashVal % hashSize);
+    return sum % hashSize;
 }
 
 void hashInsert() {
@@ -63,7 +60,7 @@ void hashInsert() {
                 tmp->line = tmpLineNum;
                 enQueue(hashTable[hashValue][tmpDocNum]->lines, tmp);
                 hashTable[hashValue][0]->cnt++;
-                token = strtok(NULL, " "); // ´ÙÀ½ ´Ü¾î ÃßÃâ
+                token = strtok(NULL, " "); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ü¾ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
             j++;
         }
@@ -77,6 +74,6 @@ void search(){
     int hashValue = hash(oneWord);
     printf("------------ Result ------------\n");
     printf("Keyword: %s\n", oneWord);
-    printf("Total documents: %d", hashTable[hashValue][0]->cnt);
+    printf("Total documents: %d\n", hashTable[hashValue][0]->cnt);
     bst_show(hashTable[hashValue][0]->bst);
 }

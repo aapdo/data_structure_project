@@ -2,7 +2,7 @@
 char fileNames[MAX_FILE_NUM][MAX_FILE_NAME_LEN];
 char fileData[MAX_FILE_NUM][MAX_FILE_LINE_NUM][MAX_FILE_LINE_LEN];
 word_pointer hashTable[hashSize][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
-int compare = 0; // ºñ±³¿¬»êÈ½¼ö
+int compare = 0; // ï¿½ñ±³¿ï¿½ï¿½ï¿½È½ï¿½ï¿½
 char oneWord[15];
 
 void enQueue(queue_pointer q, queue_node_pointer node){

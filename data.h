@@ -26,7 +26,6 @@ typedef struct queue{
     queue_node_pointer front, rear;
 } queue;
 
-
 typedef struct wordData* word_pointer;
 typedef struct tree_node* tree_pointer;
 typedef struct wordData {

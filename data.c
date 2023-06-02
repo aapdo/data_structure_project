@@ -60,10 +60,14 @@ void bst_insert(tree_pointer root, word_pointer wordPointer){
 }
 
 /**
+== serach ==
 ------------ Result ------------
 Keyword: computer
 Total documents: 3
+==============
 
+
+ =========== bst_show ============
 <doc002.txt> (computer: 2)
 In computer science, data is any
 for use with a computer[1].
@@ -73,18 +77,25 @@ A "data structure" is a way of storing data in a computer so that it can be used
 
 <doc004.txt> (computer: 1)
 A computer is a machine for manipulating data
+ =========== bst_show ============
 
 Total number of comparison: 25
  * @param ptr
  */
-void bst_show(tree_pointer ptr){
-
-    if(ptr == NULL)
+void bst_show(tree_pointer ptr, char *word){
+    printf("---------------------- Result ----------------------\n");
+    printf("Total documents: \n");
+    word_pointer wordPointer = ptr->data;
+    printf("<doc%03d.txt> (%s: %d)\n", wordPointer->docNumber, word, wordPointer->cnt);
+    if(ptr == NULL) return;
+    bst
 }
 
 void sortWords(){
+    int countDoc = 0;
     for (int i = 0; i < hashSize; i++)
     {
+        countDoc = 0;
         //at least one lines
         if (hashTable[i][0]->cnt != 0)
         {
@@ -93,11 +104,14 @@ void sortWords(){
             tree_pointer tmp = hashTable[i][0]->bst;
             for (int j = 1; j < 101; j++)
             {
-                //standard: wordData.cnt
-                //cnt 기준으로 bst 삽입.
-                //node = wordData.
-                bst_insert(tmp, hashTable[i][j]);
+                if(hashTable[i][j]->cnt != 0){
+                    //standard: wordData.cnt
+                    //node = wordData.
+                    countDoc++;
+                    bst_insert(tmp, hashTable[i][j]);
+                }
             }
+            hashTable[i][0]->cnt = countDoc;
         }
     }
 }

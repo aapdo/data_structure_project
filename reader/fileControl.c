@@ -1,7 +1,6 @@
-#include <stdlib.h>
 #include "fileControl.h"
 
-int getInfo(char fileNames[][MAX_FILE_NAME_LEN]){
+int getInfo(){
     FILE* fp = fopen("../textFile/fileInfo.txt", "r");
 
     //file cnt
@@ -35,7 +34,7 @@ int getInfo(char fileNames[][MAX_FILE_NAME_LEN]){
 
     return cnt;
 }
-void readFile(char fileData[][MAX_FILE_LINE_NUM][MAX_FILE_LINE_LEN], char fileNames[][MAX_FILE_NAME_LEN]){
+void readFile(){
     FILE *fp;
     char buffer[MAX_FILE_LINE_LEN];
     int len;

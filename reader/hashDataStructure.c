@@ -118,5 +118,4 @@ void bst_insert(tree_pointer root, word_pointer wordPointer){
 
 void bst_show(tree_pointer ptr){
     if(ptr == NULL)
-
 }

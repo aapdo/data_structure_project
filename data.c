@@ -59,7 +59,26 @@ void bst_insert(tree_pointer root, word_pointer wordPointer){
     }
 }
 
+/**
+------------ Result ------------
+Keyword: computer
+Total documents: 3
+
+<doc002.txt> (computer: 2)
+In computer science, data is any
+for use with a computer[1].
+
+<doc001.txt> (computer: 1)
+A "data structure" is a way of storing data in a computer so that it can be used efficiently.
+
+<doc004.txt> (computer: 1)
+A computer is a machine for manipulating data
+
+Total number of comparison: 25
+ * @param ptr
+ */
 void bst_show(tree_pointer ptr){
+
     if(ptr == NULL)
 }
 

@@ -63,6 +63,6 @@ void search(){
     int hashValue = hash(inputStr);
     printf("------------ Result ------------\n");
     printf("Keyword: %s\n", inputStr);
-    printf("Total documents: %d", );
+    printf("Total documents: %d", hashTable[hashValue][0]->cnt);
     bst_show(hashTable[hashValue][0]);
 }

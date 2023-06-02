@@ -27,13 +27,13 @@ queue_node_pointer deQueue(queue_pointer q);
 bool is_queue_empty(queue_pointer q);
 void bst_insert(tree_pointer root, word_pointer wordPointer);
 void bst_show(tree_pointer ptr);
+//sort data when end of read
+void sortWords();
 
 //hash init
 void hashInit();
 //hashing and insert data
 void hashInsert();
-//sort data when end of read
-void sortWords();
 //search when user input word
 void search();
 

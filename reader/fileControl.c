@@ -34,6 +34,7 @@ int getInfo(){
 
     return cnt;
 }
+
 void readFile(){
     FILE *fp;
     char buffer[MAX_FILE_LINE_LEN];

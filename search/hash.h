@@ -1,4 +1,5 @@
 #include "../reader/fileControl.h"
+#include "../data.h"
 
 //hash init
 void hashInit();
@@ -6,7 +7,5 @@ void hashInit();
 int hash(char* word);
 //hashing and insert data
 void hashInsert();
-// sort
-void sortWords();
 // search
 void search();

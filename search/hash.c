@@ -52,17 +52,12 @@ void hashInsert() {
     }
 }
 
-void sortWords(){
-
-}
-
 void search(){
-    char* inputStr;
-    scanf("%s", inputStr);
+    scanf("%s", searchTarget);
 
-    int hashValue = hash(inputStr);
+    int hashValue = hash(searchTarget);
     printf("------------ Result ------------\n");
-    printf("Keyword: %s\n", inputStr);
+    printf("Keyword: %s\n", searchTarget);
     printf("Total documents: %d", hashTable[hashValue][0]->cnt);
     bst_show(hashTable[hashValue][0]);
 }

@@ -24,7 +24,25 @@ int hash(char* word) {
         i++;
     }
 
-    return hashVal % hashSize;
+    return (hashVal % hashSize);
+}
+
+char* split(char* line) {
+    while (line != NULL) {
+        char* word = strtok(line, " \t\n");
+        while (word != NULL) {
+            // special char X
+            int i, j;
+            for (i = 0, j = 0; word[i] != '\0'; i++) {
+                if (isalpha(word[i])) {
+                    word[j++] = tolower(word[i]);
+                }
+            }
+            word[j] = '\0';
+            word = strtok(NULL, " \t\n");
+        }
+        return word; 
+    }
 }
 
 void hashInsert() {
@@ -33,7 +51,7 @@ void hashInsert() {
         while(fileData[i][j][k] != '\0') {
             while(fileData[i][j][k] != '\0') {
                 //hashing
-                int hashValue = hash(fileData[i][j][k]);
+                int hashValue = hash(split(&fileData[i][j][k]));
                 //doc num
                 int tmpDocNum = i;
                 //line num
@@ -59,5 +77,5 @@ void search(){
     printf("------------ Result ------------\n");
     printf("Keyword: %s\n", searchTarget);
     printf("Total documents: %d", hashTable[hashValue][0]->cnt);
-    bst_show(hashTable[hashValue][0]);
+    bst_show(hashTable[hashValue][0]->bst);
 }

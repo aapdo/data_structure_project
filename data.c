@@ -83,12 +83,31 @@ Total number of comparison: 25
  * @param ptr
  */
 void bst_show(tree_pointer ptr, char *word){
-    printf("---------------------- Result ----------------------\n");
-    printf("Total documents: \n");
-    word_pointer wordPointer = ptr->data;
-    printf("<doc%03d.txt> (%s: %d)\n", wordPointer->docNumber, word, wordPointer->cnt);
     if(ptr == NULL) return;
-    bst
+    bst_show(ptr->left, word);
+    bst_show(ptr->right, word);
+
+    word_pointer wordPointer = ptr->data;
+    int wordCnt = wordPointer->cnt;
+    char tmpChar;
+    queue_pointer q = wordPointer->lines;
+    queue_node_pointer lineNode;
+
+    printf("<doc%03d.txt> (%s: %d)\n", wordPointer->docNumber, word, wordCnt);
+    for (int i = 0; i < wordCnt; ++i) {
+        lineNode = deQueue(q);
+        int j = 0;
+        while(1){
+            tmpChar = fileData[wordPointer->docNumber][lineNode->line][j];
+            if(tmpChar != '\0'){
+                printf("%c",tmpChar);
+                break;
+            }
+            j++;
+        }
+        printf("\n");
+        enQueue(q, lineNode);
+    }
 }
 
 void sortWords(){

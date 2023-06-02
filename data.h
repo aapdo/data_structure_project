@@ -19,7 +19,6 @@ typedef struct list_node{
     list_pointer link;
 } list_node;
 
-
 typedef struct wordData* word_pointer;
 typedef struct tree_node* tree_pointer;
 typedef struct wordData {
@@ -27,10 +26,6 @@ typedef struct wordData {
     int cnt;
     list_pointer lines;
     tree_pointer bst;
-    /*
-    must init
-    lines = (list_pointer)malloc(sizeof(list_node));
-    */
 } wordData;
 
 typedef struct tree_node {

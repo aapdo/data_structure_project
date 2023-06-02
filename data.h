@@ -34,7 +34,7 @@ typedef struct tree_node {
     tree_pointer right;
 } tree_node;
 
-const int hashSize = 10000;
-word_pointer hashTable[hashSize][101];
+int hashSize = 10000;
+word_pointer hashTable[hashSize][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
 
 #endif //DATA_STRUCTURE_PROJECT_DATA_H

@@ -45,7 +45,7 @@ void readFile(){
     }
 
     fileNum = getInfo(fileNames);
-    printf("%s\n", fileNames[0]);
+    //printf("%s\n", fileNames[0]);
     for (int i = 0; i < fileNum; ++i) {
         char path[50] = "../textFile/";
 
@@ -67,8 +67,9 @@ void readFile(){
             //printf("i: %d, %s\n", j, fileData[i][j]);
             j++;
         }
-        printf("doc%03d\n", i+1);
+        //printf("doc%03d\n", i+1);
 
         fclose(fp);
     }
+    printf("Total number of documents: %d\n", fileNum);
 }

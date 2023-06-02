@@ -19,12 +19,13 @@ void hashInit() {
 
 int hash(char* word) {
     int sum = 0;
-
+    unsigned int poly = 0xEDB88320;
     while (*word) {
-        sum += *word++;
+        poly = (poly << 1) | (poly >> (32-1));
+        sum = (int)(poly * sum + *word++);
     }
 
-    return sum % hashSize;
+    return sum % hashSize > 0? sum % hashSize: -1 * sum % hashSize;
 }
 
 void hashInsert() {

@@ -1,7 +1,7 @@
 #include "hash.h"
 
 //call start of main
-void hashInit(){
+void hashInit() {
     for (int i = 0; i < hashSize; i++)
     {
         for (int j = 0; j < 101; j++)
@@ -10,7 +10,7 @@ void hashInit(){
             hashTable[i][j]->cnt = 0;
         }
     }
-    read();
+    readFile();
     hashInsert();
 }
 
@@ -20,6 +20,7 @@ int hash(char* word) {
 
     while (word[i] != '\0') {
         hashVal = (hashVal << 5) + word[i];
+        compare++;
         i++;
     }
 
@@ -49,4 +50,19 @@ void hashInsert() {
             j++;
         }
     }
+}
+
+void sortWords(){
+
+}
+
+void search(){
+    char* inputStr;
+    scanf("%s", inputStr);
+
+    int hashValue = hash(inputStr);
+    printf("------------ Result ------------\n");
+    printf("Keyword: %s\n", inputStr);
+    printf("Total documents: %d", );
+    bst_show(hashTable[hashValue][0]);
 }

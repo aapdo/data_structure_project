@@ -1,7 +1,6 @@
 #include "hashDataStructure.h"
 
-
-
+//
 void enQueue(queue_pointer q, queue_node_pointer node){
     if (is_queue_empty(q)) {
         q->front = node;
@@ -12,10 +11,18 @@ void enQueue(queue_pointer q, queue_node_pointer node){
     }
 }
 queue_node_pointer deQueue(queue_pointer q){
+    queue_node_pointer tmp;
     if (is_queue_empty(q)) {
         return NULL;
     }else{
-
+        tmp = q->front;
+        if (q->front != q->rear) {
+            q->front = q->front->link;
+        }
+        else{
+            q->front = q->rear = NULL;
+        }
+        return tmp;
     }
 }
 bool is_queue_empty(queue_pointer q){

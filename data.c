@@ -82,10 +82,10 @@ A computer is a machine for manipulating data
 Total number of comparison: 25
  * @param ptr
  */
-void bst_show(tree_pointer ptr, char *word){
+void bst_show(tree_pointer ptr){
     if(ptr == NULL) return;
-    bst_show(ptr->left, word);
-    bst_show(ptr->right, word);
+    bst_show(ptr->left);
+    bst_show(ptr->right);
 
     word_pointer wordPointer = ptr->data;
     int wordCnt = wordPointer->cnt;
@@ -93,7 +93,7 @@ void bst_show(tree_pointer ptr, char *word){
     queue_pointer q = wordPointer->lines;
     queue_node_pointer lineNode;
 
-    printf("<doc%03d.txt> (%s: %d)\n", wordPointer->docNumber, word, wordCnt);
+    printf("<doc%03d.txt> (%s: %d)\n", wordPointer->docNumber, searchTarget, wordCnt);
     for (int i = 0; i < wordCnt; ++i) {
         lineNode = deQueue(q);
         int j = 0;

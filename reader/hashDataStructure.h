@@ -4,9 +4,6 @@
 #include "../utils.h"
 #include "../data.h"
 
-
-
-
 /**
  * 해시 테이블은 단어로 검색함
  * 값으로는 버킷이 들어감
@@ -25,7 +22,9 @@
  *
  */
 
-void insert_list(list_pointer head, int lineNum);
+void enQueue(queue_pointer q, queue_node_pointer node);
+queue_node_pointer deQueue(queue_pointer q);
+bool is_queue_empty(queue_pointer q);
 void bst_insert(tree_pointer root, word_pointer wordPointer);
 void bst_show(tree_pointer ptr);
 

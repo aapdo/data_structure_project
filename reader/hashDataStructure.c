@@ -1,10 +1,25 @@
 #include "hashDataStructure.h"
 
-void insert_list(list_pointer head, int lineNum){
-    list_pointer newNode = (list_pointer)malloc(sizeof(list_node));
-    newNode->line = lineNum;
-    newNode->link = head;
-    head->link = newNode;
+
+
+void enQueue(queue_pointer q, queue_node_pointer node){
+    if (is_queue_empty(q)) {
+        q->front = node;
+        q->rear = node;
+    }else{
+        q->rear->link = node;
+        q->rear = node;
+    }
+}
+queue_node_pointer deQueue(queue_pointer q){
+    if (is_queue_empty(q)) {
+        return NULL;
+    }else{
+
+    }
+}
+bool is_queue_empty(queue_pointer q){
+    return q->front == NULL;
 }
 
 //call start of main
@@ -29,7 +44,9 @@ void hashInsert(){
 
     //word data
     hashTable[hashValue][tmpDocNum]->cnt++;
-    insert_list(hashTable[hashValue][tmpDocNum]->lines, tmpLineNum);
+    queue_node_pointer tmp = (queue_node_pointer) malloc(sizeof(queue_node));
+    tmp->line = tmpLineNum;
+    enQueue(hashTable[hashValue][tmpDocNum]->lines, tmp);
     hashTable[hashValue][0]->cnt++;
 }
 

@@ -1,5 +1,4 @@
 #include "../reader/fileControl.h"
-#include "../data.h"
 
 //hash init
 void hashInit();

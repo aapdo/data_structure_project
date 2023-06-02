@@ -1,4 +1,9 @@
 #include "data.h"
+char fileNames[MAX_FILE_NUM][MAX_FILE_NAME_LEN];
+char fileData[MAX_FILE_NUM][MAX_FILE_LINE_NUM][MAX_FILE_LINE_LEN];
+word_pointer hashTable[hashSize][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
+int compare = 0; // 비교연산횟수
+char* searchTarget;
 
 void enQueue(queue_pointer q, queue_node_pointer node){
     if (is_queue_empty(q)) {

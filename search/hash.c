@@ -46,9 +46,14 @@ char* split(char* line) {
 }
 
 void hashInsert() {
-    int i, j, k;
+    int i = 0;
+    int j = 0;
+    int k = 0;
+
     for(i = 0; i < 101; i++) {
+        j = 0;
         while(fileData[i][j][k] != '\0') {
+            k = 0;
             while(fileData[i][j][k] != '\0') {
                 //hashing
                 int hashValue = hash(split(&fileData[i][j][k]));

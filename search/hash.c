@@ -12,7 +12,7 @@ void hashInit(){
     }
 }
 
-int hash(char* fileData[][][]) {
+int hash(char* fileData) {
     int hashVal = 0;
     int i = 0;
 

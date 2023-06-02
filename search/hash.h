@@ -1,47 +1,35 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
+#include "../data.h"
+#include "../utils.h"
 
-#define MAX_WORD_LENGTH 50
-#define TABLE_SIZE 100
+// typedef struct FileNode {
+//     char fileName[MAX_WORD_LENGTH];
+//     int lineNumber;
+//     struct FileNode* next;
+// } FileNode;
 
-typedef struct FileNode {
-    char fileName[MAX_WORD_LENGTH];
-    int lineNumber;
-    struct FileNode* next;
-} FileNode;
+// typedef struct wordData* word_pointer;
+// typedef struct tree_pointer tree_pointer;
 
-typedef struct wordData* word_pointer;
-typedef struct tree_pointer tree_pointer;
+// typedef struct tree_node {
+//     word_pointer data;
+//     tree_pointer left;
+//     tree_pointer right;
+// } tree_node;
 
-typedef struct tree_node {
-    word_pointer data;
-    tree_pointer left;
-    tree_pointer right;
-} tree_node;
+// typedef struct wordData {
+//     char key[MAX_WORD_LENGTH];
+//     int count;
+//     FileNode* fileList;
+//     tree_pointer tree_node;
+//     struct wordData* next;
+// } wordData;
 
-typedef struct wordData {
-    char key[MAX_WORD_LENGTH];
-    int count;
-    FileNode* fileList;
-    tree_pointer tree_node;
-    struct wordData* next;
-} wordData;
-
-wordData* hashTable[TABLE_SIZE] = { NULL };
-
-unsigned int hash(const char* key) {
-    unsigned int hashVal = 0;
-    int i = 0;
-
-    while (key[i] != '\0') {
-        hashVal = (hashVal << 5) + key[i];
-        i++;
-    }
-
-    return hashVal % TABLE_SIZE;
-}
+//hash init
+void hashInit();
+//hash
+int hash(char* fileData);
+//hashing and insert data
+void hashInsert();
 
 int compareIgnoreCase(const char* str1, const char* str2) {
     while (*str1 && *str2) {
@@ -232,22 +220,4 @@ void processFile(const char* fileName) {
     }
 
     fclose(file);
-}
-
-
-int main() {
-    char fileName[15];
-    char searchWord[MAX_WORD_LENGTH];
-
-    for (int i = 1; i <= 100; i++) {
-        sprintf(fileName, "doc%03d.txt", i);
-        processFile(fileName);
-    }
-
-    printf("검색할 단어를 입력하세요: ");
-    scanf("%s", searchWord);
-
-    SearchWord(searchWord);
-
-    return 0;
 }

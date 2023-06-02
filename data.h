@@ -63,6 +63,7 @@ typedef struct tree_node {
 
 word_pointer hashTable[hashSize][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
 int compare = 0; // 비교연산횟수
+char* searchTarget
 
 void enQueue(queue_pointer q, queue_node_pointer node);
 queue_node_pointer deQueue(queue_pointer q);

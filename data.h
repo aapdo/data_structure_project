@@ -15,18 +15,24 @@
 char fileNames[MAX_FILE_NUM][MAX_FILE_NAME_LEN];
 char fileData[MAX_FILE_NUM][MAX_FILE_LINE_NUM][MAX_FILE_LINE_LEN];
 
-typedef struct list_node* list_pointer;
-typedef struct list_node{
+typedef struct queue_node* queue_node_pointer;
+typedef struct queue_node{
     int line;
-    list_pointer link;
-} list_node;
+    queue_node_pointer link;
+} queue_node;
+
+typedef struct queue* queue_pointer;
+typedef struct queue{
+    queue_node_pointer front, rear;
+} queue;
+
 
 typedef struct wordData* word_pointer;
 typedef struct tree_node* tree_pointer;
 typedef struct wordData {
     int docNumber;
     int cnt;
-    list_pointer lines;
+    queue_pointer lines;
     tree_pointer bst;
 } wordData;
 

@@ -3,7 +3,7 @@
 void insert_list(list_pointer head, int lineNum){
     list_pointer newNode = (list_pointer)malloc(sizeof(list_node));
     newNode->line = lineNum;
-    newNode->link = head->link;
+    newNode->link = head;
     head->link = newNode;
 }
 

@@ -30,7 +30,7 @@ queue_node_pointer deQueue(queue_pointer q){
     }
 }
 bool is_queue_empty(queue_pointer q){
-    return q->front == NULL;
+    return (q->front == NULL);
 }
 void bst_insert(tree_pointer root, word_pointer wordPointer){
     if (root == NULL) {

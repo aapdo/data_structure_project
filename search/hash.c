@@ -6,8 +6,11 @@ void hashInit() {
     {
         for (int j = 0; j < 101; j++)
         {
+            //initialize
             hashTable[i][j] = (word_pointer) malloc(sizeof(wordData));
             hashTable[i][j]->cnt = 0;
+            hashTable[i][j]->lines = (queue_pointer) malloc(sizeof(queue));
+            hashTable[i][j]->lines->front = NULL;
         }
     }
     readFile();
@@ -62,7 +65,6 @@ void hashInsert() {
                 hashTable[hashValue][0]->cnt++;
                 token = strtok(NULL, " "); // 다음 단어 추출
             }
-
             j++;
         }
     }

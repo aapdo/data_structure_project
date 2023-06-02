@@ -51,6 +51,6 @@ extern char fileNames[MAX_FILE_NUM][MAX_FILE_NAME_LEN];
 extern char fileData[MAX_FILE_NUM][MAX_FILE_LINE_NUM][MAX_FILE_LINE_LEN];
 extern word_pointer hashTable[hashSize][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
 extern int compare; // 비교연산횟수
-extern char* searchTarget;
+extern char oneWord[15];
 
 #endif //DATA_STRUCTURE_PROJECT_UTILS_H

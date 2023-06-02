@@ -3,7 +3,7 @@ char fileNames[MAX_FILE_NUM][MAX_FILE_NAME_LEN];
 char fileData[MAX_FILE_NUM][MAX_FILE_LINE_NUM][MAX_FILE_LINE_LEN];
 word_pointer hashTable[hashSize][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
 int compare = 0; // 비교연산횟수
-char* searchTarget;
+char oneWord[15];
 
 void enQueue(queue_pointer q, queue_node_pointer node){
     if (is_queue_empty(q)) {
@@ -98,7 +98,7 @@ void bst_show(tree_pointer ptr){
     queue_pointer q = wordPointer->lines;
     queue_node_pointer lineNode;
 
-    printf("<doc%03d.txt> (%s: %d)\n", wordPointer->docNumber, searchTarget, wordCnt);
+    printf("<doc%03d.txt> (%s: %d)\n", wordPointer->docNumber, oneWord, wordCnt);
     for (int i = 0; i < wordCnt; ++i) {
         lineNode = deQueue(q);
         int j = 0;

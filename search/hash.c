@@ -27,24 +27,6 @@ int hash(char* word) {
     return (hashVal % hashSize);
 }
 
-char* split(char* line) {
-    while (line != NULL) {
-        char* word = strtok(line, " \t\n");
-        while (word != NULL) {
-            // special char X
-            int i, j;
-            for (i = 0, j = 0; word[i] != '\0'; i++) {
-                if (isalpha(word[i])) {
-                    word[j++] = tolower(word[i]);
-                }
-            }
-            word[j] = '\0';
-            word = strtok(NULL, " \t\n");
-        }
-        return word; 
-    }
-}
-
 void hashInsert() {
     int i = 0;
     int j = 0;
@@ -53,34 +35,46 @@ void hashInsert() {
     for(i = 0; i < 101; i++) {
         j = 0;
         while(fileData[i][j][k] != '\0') {
-            k = 0;
-            while(fileData[i][j][k] != '\0') {
+            char* line = fileData[i][j];
+            //remove empty space, tab, enter
+            char* token = strtok(line, " \t\n");
+            while (token != NULL) {
+                //remove special char
+                int l, m;
+                for (l = 0, m = 0; token[l] != '\0'; l++) {
+                    if (isalpha(token[l])) {
+                        token[m++] = tolower(token[l]);
+                    }
+                }
+                token[m] = '\0';
+
                 //hashing
-                int hashValue = hash(split(&fileData[i][j][k]));
+                int hashValue = hash(token);
                 //doc num
                 int tmpDocNum = i;
                 //line num
                 int tmpLineNum = j;
-
-                //word data
+                 //word data
                 hashTable[hashValue][tmpDocNum]->cnt++;
                 queue_node_pointer tmp = (queue_node_pointer) malloc(sizeof(queue_node));
                 tmp->line = tmpLineNum;
                 enQueue(hashTable[hashValue][tmpDocNum]->lines, tmp);
                 hashTable[hashValue][0]->cnt++;
-                k++;
+                token = strtok(NULL, " "); // 다음 단어 추출
             }
+
             j++;
         }
     }
 }
 
 void search(){
-    scanf("%s", searchTarget);
+    memset(oneWord, '\0', sizeof(oneWord));
+    scanf("%s", oneWord);
 
-    int hashValue = hash(searchTarget);
+    int hashValue = hash(oneWord);
     printf("------------ Result ------------\n");
-    printf("Keyword: %s\n", searchTarget);
+    printf("Keyword: %s\n", oneWord);
     printf("Total documents: %d", hashTable[hashValue][0]->cnt);
     bst_show(hashTable[hashValue][0]->bst);
 }

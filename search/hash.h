@@ -1,5 +1,6 @@
 #include "../data.h"
 #include "../utils.h"
+#include "../reader/reader.h"
 
 // typedef struct FileNode {
 //     char fileName[MAX_WORD_LENGTH];
@@ -27,77 +28,10 @@
 //hash init
 void hashInit();
 //hash
-int hash(char* fileData);
+int hash(char* word);
 //hashing and insert data
 void hashInsert();
-
-int compareIgnoreCase(const char* str1, const char* str2) {
-    while (*str1 && *str2) {
-        if (tolower(*str1) != tolower(*str2)) {
-            return 0;
-        }
-        str1++;
-        str2++;
-    }
-    return (*str1 == '\0' && *str2 == '\0');
-}
-
-void insertOrUpdate(const char* key, const char* fileName, int lineNumber) {
-    unsigned int index = hash(key);
-    wordData* current = hashTable[index];
-
-    while (current != NULL) {
-        if (compareIgnoreCase(current->key, key)) {
-            current->count++;
-
-            FileNode* newNode = (FileNode*)malloc(sizeof(FileNode));
-            if (newNode == NULL) {
-                printf("메모리 할당에 실패했습니다.\n");
-                return;
-            }
-            strcpy(newNode->fileName, fileName);
-            newNode->lineNumber = lineNumber;
-            newNode->next = current->fileList;
-            current->fileList = newNode;
-
-            return;
-        }
-        current = current->next;
-    }
-
-    wordData* newwordData = (wordData*)malloc(sizeof(wordData));
-    if (newwordData == NULL) {
-        printf("메모리 할당에 실패했습니다.\n");
-        return;
-    }
-
-    strcpy(newwordData->key, key);
-    newwordData->count = 1;
-    newwordData->next = NULL;
-
-    FileNode* newNode = (FileNode*)malloc(sizeof(FileNode));
-    if (newNode == NULL) {
-        printf("메모리 할당에 실패했습니다.\n");
-        free(newwordData);
-        return;
-    }
-    strcpy(newNode->fileName, fileName);
-    newNode->lineNumber = lineNumber;
-    newNode->next = NULL;
-
-    newwordData->fileList = newNode;
-
-    if (hashTable[index] == NULL) {
-        hashTable[index] = newwordData;
-    }
-    else {
-        wordData* current = hashTable[index];
-        while (current->next != NULL) {
-            current = current->next;
-        }
-        current->next = newwordData;
-    }
-}
+void sortWords();
 
 void buildTree(wordData* wordData) {
     FileNode* fileNode = wordData->fileList;

@@ -20,6 +20,8 @@ void hashInit() {
     readFile();
     hashInsert();
     sortWords();
+    printf("Total number of indexed words: %d\n", totalIndexedWords);
+    printf("Total number of comparison: %d\n", compare);
 }
 
 int hash(char* word) {
@@ -28,8 +30,10 @@ int hash(char* word) {
     while (*word) {
         poly = (poly << 1) | (poly >> (32-1));
         sum = (int)(poly * sum + *word++);
+        compare++;
     }
 
+    compare++;
     return sum % hashSize > 0? sum % hashSize: -1 * sum % hashSize;
 }
 
@@ -80,13 +84,15 @@ void hashInsert() {
 
 void search(){
     fflush(stdin);
+    compare = 0;
     memset(oneWord, '\0', sizeof(oneWord));
     printf("enter the word: ");
     scanf("%s", oneWord);
 
     int hashValue = hash(oneWord);
-    printf("------------ Result ------------\n");
+    printf("\n------------ Result ------------\n");
     printf("Keyword: %s\n", oneWord);
-    printf("Total documents: %d\n", hashTable[hashValue][0]->cnt);
+    printf("Total number of documents: %d\n", hashTable[hashValue][0]->cnt);
     bst_show(hashTable[hashValue][0]->bst);
+    printf("Total number of comparison: %d\n", compare);
 }

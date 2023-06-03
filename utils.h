@@ -53,5 +53,6 @@ extern word_pointer hashTable[hashSize][101]; // [hashsize][0~100], 0 : bst, 1~1
 extern int compare; // �񱳿���Ƚ��
 extern char oneWord[15];
 extern char oneLine[MAX_FILE_LINE_LEN];
+extern int totalIndexedWords;
 
 #endif //DATA_STRUCTURE_PROJECT_UTILS_H

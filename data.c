@@ -119,25 +119,13 @@ void bst_show(tree_pointer ptr){
 
     word_pointer wordPointer = ptr->data;
     int wordCnt = wordPointer->cnt;
-    char tmpChar;
     queue_pointer q = wordPointer->lines;
     queue_node_pointer lineNode;
 
     printf("<doc%03d.txt> (%s: %d)\n", wordPointer->docNumber, oneWord, wordCnt);
     for (int i = 0; i < wordCnt; ++i) {
         lineNode = deQueue(q);
-        int j = 0;
-        while(1){
-            printf("%s\n",fileData[wordPointer->docNumber][lineNode->line] );
-            //tmpChar = [j];
-            /*
-            if(tmpChar != '\0'){
-                printf("%c",tmpChar);
-                break;
-            }
-             */
-            j++;
-        }
+        printf("%s\n",fileData[wordPointer->docNumber][lineNode->line] );
         enQueue(q, lineNode);
     }
 }
@@ -169,6 +157,7 @@ void sortWords(){
             hashTable[i][0]->bst->right = NULL;
             hashTable[i][0]->bst->left = NULL;
         }
+        countDoc++;
         hashTable[i][0]->cnt = countDoc;
     }
 }

@@ -38,7 +38,7 @@ void readFile(){
     int len;
     int fileNum = 0;
 
-    for (int i = 0; i < MAX_FILE_NUM; ++i) {
+    for (int i = 1; i < MAX_FILE_NUM; ++i) {
         for (int j = 0; j < MAX_FILE_LINE_NUM; ++j) {
             memset(fileData[i][j], 0, sizeof(fileData[i][j]));
         }
@@ -46,10 +46,10 @@ void readFile(){
 
     fileNum = getInfo(fileNames);
     //printf("%s\n", fileNames[0]);
-    for (int i = 0; i < fileNum; ++i) {
+    for (int i = 1; i < fileNum+1; ++i) {
         char path[50] = "../textFile/";
 
-        fp = fopen(strcat(path, fileNames[i]), "r");
+        fp = fopen(strcat(path, fileNames[i-1]), "r");
         if (fp == NULL) {
             printf("Can't open file.\ni: %d file name: %s", i, strcat(path, fileNames[i]));
             exit(1);
@@ -61,11 +61,12 @@ void readFile(){
             //\n Á¦°Å
             buffer[strcspn(buffer, "\n")] = '\0';
             len = strlen(buffer);
-
-
-            strncpy(fileData[i][j], buffer, len);
+            if (buffer[0] != '\0') {
+                strncpy(fileData[i][j], buffer, len);
+                //printf("doc: %d, line: %d sen: %s\n", i, j, fileData[i][j]);
+                j++;
+            }
             //printf("i: %d, %s\n", j, fileData[i][j]);
-            j++;
         }
         //printf("doc%03d\n", i+1);
 

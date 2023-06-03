@@ -19,7 +19,7 @@ void hashInit() {
     }
     readFile();
     hashInsert();
-    sortWords();
+    //sortWords();
 }
 
 int hash(char* word) {
@@ -38,7 +38,7 @@ void hashInsert() {
     int j = 0;
     int k = 0;
 
-    for(i = 0; i < 100; i++) {
+    for(i = 1; i < 101; i++) {
         j = 0;
         while(fileData[i][j][k] != '\0') {
             char* line = fileData[i][j];
@@ -59,7 +59,7 @@ void hashInsert() {
                 //doc num
                 int tmpDocNum = i+1;
                 //line num
-                int tmpLineNum = j+1;
+                int tmpLineNum = j;
                  //word data
                 hashTable[hashValue][tmpDocNum]->cnt++;
                 queue_node_pointer tmp = (queue_node_pointer) malloc(sizeof(queue_node));
@@ -69,7 +69,7 @@ void hashInsert() {
                 hashTable[hashValue][0]->cnt++;
                 enQueueDoc(hashTable[hashValue][0]->lines, tmpDocNum);
 
-                token = strtok(NULL, " ");
+                token = strtok(NULL, " \t\n");
             }
             j++;
         }
@@ -77,6 +77,7 @@ void hashInsert() {
 }
 
 void search(){
+    fflush(stdin);
     memset(oneWord, '\0', sizeof(oneWord));
     printf("enter the word: ");
     scanf("%s", oneWord);

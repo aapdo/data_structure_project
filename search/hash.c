@@ -2,19 +2,23 @@
 
 //call start of main
 void hashInit() {
+    int j;
     for (int i = 0; i < hashSize; i++)
     {
-        for (int j = 0; j < 101; j++)
+        for (j = 0; j < 101; j++)
         {
             //initialize
             hashTable[i][j] = (word_pointer) malloc(sizeof(wordData));
             hashTable[i][j]->cnt = 0;
             hashTable[i][j]->lines = (queue_pointer) malloc(sizeof(queue));
             hashTable[i][j]->lines->front = NULL;
+            hashTable[i][j]->lines->rear = NULL;
+            hashTable[i][j]->bst = NULL;
         }
     }
     readFile();
     hashInsert();
+    sortWords();
 }
 
 int hash(char* word) {
@@ -33,7 +37,7 @@ void hashInsert() {
     int j = 0;
     int k = 0;
 
-    for(i = 0; i < 101; i++) {
+    for(i = 0; i < 100; i++) {
         j = 0;
         while(fileData[i][j][k] != '\0') {
             char* line = fileData[i][j];
@@ -52,16 +56,19 @@ void hashInsert() {
                 //hashing
                 int hashValue = hash(token);
                 //doc num
-                int tmpDocNum = i;
+                int tmpDocNum = i+1;
                 //line num
-                int tmpLineNum = j;
+                int tmpLineNum = j+1;
                  //word data
                 hashTable[hashValue][tmpDocNum]->cnt++;
                 queue_node_pointer tmp = (queue_node_pointer) malloc(sizeof(queue_node));
                 tmp->line = tmpLineNum;
                 enQueue(hashTable[hashValue][tmpDocNum]->lines, tmp);
+
                 hashTable[hashValue][0]->cnt++;
-                token = strtok(NULL, " "); // ���� �ܾ� ����
+                enQueueDoc(hashTable[hashValue][0]->lines, tmpDocNum);
+
+                token = strtok(NULL, " ");
             }
             j++;
         }

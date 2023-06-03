@@ -30,4 +30,7 @@ void bst_show(tree_pointer ptr);
 //sort data when end of read
 void sortWords();
 
+void enQueueDoc(queue_pointer q, int docNum);
+int deQueueDoc(queue_pointer q);
+
 #endif //DATA_STRUCTURE_PROJECT_DATA_H

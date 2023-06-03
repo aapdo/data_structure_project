@@ -19,7 +19,7 @@ void hashInit() {
     }
     readFile();
     hashInsert();
-    //sortWords();
+    sortWords();
 }
 
 int hash(char* word) {
@@ -57,13 +57,14 @@ void hashInsert() {
                 //hashing
                 int hashValue = hash(token);
                 //doc num
-                int tmpDocNum = i+1;
+                int tmpDocNum = i;
                 //line num
                 int tmpLineNum = j;
                  //word data
                 hashTable[hashValue][tmpDocNum]->cnt++;
                 queue_node_pointer tmp = (queue_node_pointer) malloc(sizeof(queue_node));
                 tmp->line = tmpLineNum;
+                tmp->link = NULL;
                 enQueue(hashTable[hashValue][tmpDocNum]->lines, tmp);
 
                 hashTable[hashValue][0]->cnt++;

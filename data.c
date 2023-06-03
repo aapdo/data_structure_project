@@ -37,6 +37,10 @@ void enQueueDoc(queue_pointer q, int docNum){
         q->front = tmp;
         q->rear = tmp;
     }else{
+        //겹치는 문서가 들어오지 않도록 같으면 추가하지 않음.
+        if (q->rear->line == docNum) {
+            return;
+        }
         q->rear->link = tmp;
         q->rear = tmp;
     }
@@ -69,17 +73,18 @@ void bst_insert(tree_pointer root, word_pointer wordPointer){
     newNode->left = NULL;
     newNode->right = NULL;
 
-    int tmpKey = tmp->data->cnt;
+    int tmpKey;
     int key = wordPointer->cnt;
 
     while (1) {
+        tmpKey = tmp->data->cnt;
         if (tmpKey > key) {
             if (tmp->left == NULL) {
                 tmp->left = newNode;
                 break;
             }
             tmp = tmp->left;
-        } else if(tmpKey < key) {
+        } else{
             if (tmp->right == NULL) {
                 tmp->right = newNode;
                 break;
@@ -136,28 +141,24 @@ void sortWords(){
     for (int i = 0; i < hashSize; i++)
     {
         countDoc = 0;
-        //at least one lines
-        docNum = deQueueDoc(hashTable[i][0]->lines);
-        //no document
-        if (docNum == 0) {
-            continue;
+        while (1) {
+            //hashTable에 각 단어를 포함하는 문서 번호를 한 개씩 가져옴.
+            docNum = deQueueDoc(hashTable[i][0]->lines);
+            if (docNum == 0) {
+                break;
+            }
+            printf("hash: %d, doc: %d\n", i, docNum);
+
+            if (hashTable[i][0]->bst != NULL) {
+                bst_insert(hashTable[i][0]->bst, hashTable[i][docNum]);
+            } else {
+                hashTable[i][0]->bst = (tree_pointer) malloc(sizeof(tree_node));
+                hashTable[i][0]->bst->data = hashTable[i][docNum];
+                hashTable[i][0]->bst->right = NULL;
+                hashTable[i][0]->bst->left = NULL;
+            }
+            countDoc++;
         }
-        //printf("hash: %d, doc: %d\n", i+1, docNum);
-        //standard: wordData.cnt
-        //node = wordData.
-        /*
-        countDoc++;
-        bst_insert(hashTable[i][0]->bst, hashTable[i][j]);
-        */
-        if (hashTable[i][0]->bst != NULL) {
-            bst_insert(hashTable[i][0]->bst, hashTable[i][docNum]);
-        } else {
-            hashTable[i][0]->bst = (tree_pointer) malloc(sizeof(tree_node));
-            hashTable[i][0]->bst->data = hashTable[i][docNum];
-            hashTable[i][0]->bst->right = NULL;
-            hashTable[i][0]->bst->left = NULL;
-        }
-        countDoc++;
         hashTable[i][0]->cnt = countDoc;
     }
 }

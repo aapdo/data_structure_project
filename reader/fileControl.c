@@ -66,10 +66,7 @@ void readFile(){
                 //printf("doc: %d, line: %d sen: %s\n", i, j, fileData[i][j]);
                 j++;
             }
-            //printf("i: %d, %s\n", j, fileData[i][j]);
         }
-        //printf("doc%03d\n", i+1);
-
         fclose(fp);
     }
     printf("Total number of documents: %d\n", fileNum);

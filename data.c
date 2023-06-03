@@ -4,6 +4,7 @@ char fileData[MAX_FILE_NUM][MAX_FILE_LINE_NUM][MAX_FILE_LINE_LEN];
 word_pointer hashTable[hashSize][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
 int compare = 0; // �񱳿���Ƚ��
 char oneWord[15];
+char oneLine[MAX_FILE_LINE_LEN];
 
 void enQueue(queue_pointer q, queue_node_pointer node){
     if (is_queue_empty(q)) {
@@ -119,20 +120,26 @@ Total number of comparison: 25
  */
 void bst_show(tree_pointer ptr){
     if(ptr == NULL) return;
-    bst_show(ptr->left);
     bst_show(ptr->right);
 
     word_pointer wordPointer = ptr->data;
     int wordCnt = wordPointer->cnt;
+    int docNum = wordPointer->docNumber;
+    int lineNum;
+
     queue_pointer q = wordPointer->lines;
     queue_node_pointer lineNode;
 
-    printf("<doc%03d.txt> (%s: %d)\n", wordPointer->docNumber, oneWord, wordCnt);
+    printf("<doc%03d.txt> (%s: %d)\n", docNum, oneWord, wordCnt);
     for (int i = 0; i < wordCnt; ++i) {
         lineNode = deQueue(q);
-        printf("%s\n",fileData[wordPointer->docNumber][lineNode->line] );
+        lineNum = lineNode->line;
+        strcpy(oneLine, fileData[docNum][lineNum]) ;
+        printf("%s\n", oneLine);
         enQueue(q, lineNode);
     }
+
+    bst_show(ptr->left);
 }
 
 void sortWords(){
@@ -147,7 +154,7 @@ void sortWords(){
             if (docNum == 0) {
                 break;
             }
-            printf("hash: %d, doc: %d\n", i, docNum);
+            //printf("hash: %d, doc: %d\n", i, docNum);
 
             if (hashTable[i][0]->bst != NULL) {
                 bst_insert(hashTable[i][0]->bst, hashTable[i][docNum]);

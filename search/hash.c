@@ -41,9 +41,10 @@ void hashInsert() {
     for(i = 1; i < 101; i++) {
         j = 0;
         while(fileData[i][j][k] != '\0') {
-            char* line = fileData[i][j];
+            //char* line = fileData[i][j];
+            strcpy(oneLine, fileData[i][j]);
             //remove empty space, tab, enter
-            char* token = strtok(line, " \t\n");
+            char* token = strtok(oneLine, " \t\n");
             while (token != NULL) {
                 //remove special char
                 int l, m;

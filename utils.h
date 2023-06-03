@@ -19,7 +19,7 @@
 //�� ���� �ִ� ���� ��
 #define MAX_FILE_LINE_LEN 200
 //hashSize
-#define hashSize 10000
+#define hashSize 70000
 
 typedef struct queue_node* queue_node_pointer;
 typedef struct queue_node{
@@ -52,5 +52,6 @@ extern char fileData[MAX_FILE_NUM][MAX_FILE_LINE_NUM][MAX_FILE_LINE_LEN];
 extern word_pointer hashTable[hashSize][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
 extern int compare; // �񱳿���Ƚ��
 extern char oneWord[15];
+extern char oneLine[MAX_FILE_LINE_LEN];
 
 #endif //DATA_STRUCTURE_PROJECT_UTILS_H

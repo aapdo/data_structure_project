@@ -128,14 +128,16 @@ void bst_show(tree_pointer ptr){
         lineNode = deQueue(q);
         int j = 0;
         while(1){
-            tmpChar = fileData[wordPointer->docNumber][lineNode->line][j];
+            printf("%s\n",fileData[wordPointer->docNumber][lineNode->line] );
+            //tmpChar = [j];
+            /*
             if(tmpChar != '\0'){
                 printf("%c",tmpChar);
                 break;
             }
+             */
             j++;
         }
-        printf("\n");
         enQueue(q, lineNode);
     }
 }
@@ -148,7 +150,11 @@ void sortWords(){
         countDoc = 0;
         //at least one lines
         docNum = deQueueDoc(hashTable[i][0]->lines);
-        printf("hash: %d, doc: %d\n", i+1, docNum);
+        //no document
+        if (docNum == 0) {
+            continue;
+        }
+        //printf("hash: %d, doc: %d\n", i+1, docNum);
         //standard: wordData.cnt
         //node = wordData.
         /*

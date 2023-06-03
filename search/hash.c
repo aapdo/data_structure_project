@@ -10,6 +10,7 @@ void hashInit() {
             //initialize
             hashTable[i][j] = (word_pointer) malloc(sizeof(wordData));
             hashTable[i][j]->cnt = 0;
+            hashTable[i][j]->docNumber = j;
             hashTable[i][j]->lines = (queue_pointer) malloc(sizeof(queue));
             hashTable[i][j]->lines->front = NULL;
             hashTable[i][j]->lines->rear = NULL;
@@ -77,6 +78,7 @@ void hashInsert() {
 
 void search(){
     memset(oneWord, '\0', sizeof(oneWord));
+    printf("enter the word: ");
     scanf("%s", oneWord);
 
     int hashValue = hash(oneWord);

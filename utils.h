@@ -8,18 +8,19 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
-//�ִ� ���� ����
+//maximum file number
 #define MAX_FILE_NUM 150
-//���� �� �ִ� �� ��
+//maximum number of line in file
 #define MAX_FILE_LINE_NUM 851
-
-//���� �̸��� �ִ� ���� ��
+//maximum file name length
 #define MAX_FILE_NAME_LEN 13
-
-//�� ���� �ִ� ���� ��
+//maximum sentence length
 #define MAX_FILE_LINE_LEN 200
+//maximum word length
+#define MAX_WORD_LEN 10
 //hashSize
 #define hashSize 70000
+
 
 typedef struct queue_node* queue_node_pointer;
 typedef struct queue_node{
@@ -37,6 +38,7 @@ typedef struct tree_node* tree_pointer;
 typedef struct wordData {
     int docNumber;
     int cnt;
+    char *word;
     queue_pointer lines;
     tree_pointer bst;
 } wordData;

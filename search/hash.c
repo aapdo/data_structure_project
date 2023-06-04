@@ -15,7 +15,9 @@ void hashInit() {
             hashTable[i][j]->lines->front = NULL;
             hashTable[i][j]->lines->rear = NULL;
             hashTable[i][j]->bst = NULL;
+            hashTable[i][j]->word = NULL;
         }
+        hashTable[i][0]->word = (char*) malloc(sizeof(MAX_WORD_LEN));
     }
     readFile();
     hashInsert();
@@ -73,6 +75,7 @@ void hashInsert() {
                 enQueue(hashTable[hashValue][tmpDocNum]->lines, tmp);
 
                 hashTable[hashValue][0]->cnt++;
+                strcpy(hashTable[hashValue][0]->word, token);
                 enQueueDoc(hashTable[hashValue][0]->lines, tmpDocNum);
 
                 token = strtok(NULL, " \t\n");
@@ -94,5 +97,5 @@ void search(){
     printf("Keyword: %s\n", oneWord);
     printf("Total number of documents: %d\n", hashTable[hashValue][0]->cnt);
     bst_show(hashTable[hashValue][0]->bst);
-    printf("Total number of comparison: %d\n", compare);
+    printf("\nTotal number of comparison: %d\n", compare);
 }

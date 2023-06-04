@@ -158,8 +158,6 @@ void sortWords(){
                 break;
             }
             flag = true;
-            //printf("hash: %d, doc: %d\n", i, docNum);
-            printf("%s\n", hashTable[i][0]->word);
 
             if (hashTable[i][0]->bst != NULL) {
                 bst_insert(hashTable[i][0]->bst, hashTable[i][docNum]);

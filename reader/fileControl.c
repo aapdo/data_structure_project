@@ -45,7 +45,6 @@ void readFile(){
     }
 
     fileNum = getInfo(fileNames);
-    //printf("%s\n", fileNames[0]);
     for (int i = 1; i < fileNum+1; ++i) {
         char path[50] = "../textFile/";
 

@@ -19,11 +19,7 @@
 //maximum word length
 #define MAX_WORD_LEN 10
 //hashSize
-<<<<<<< Updated upstream
-#define hashSize 70000
-=======
-#define hashSize 100000
->>>>>>> Stashed changes
+#define HASH_TABLE_SIZE 100000
 
 
 typedef struct queue_node* queue_node_pointer;
@@ -55,7 +51,7 @@ typedef struct tree_node {
 
 extern char fileNames[MAX_FILE_NUM][MAX_FILE_NAME_LEN];
 extern char fileData[MAX_FILE_NUM][MAX_FILE_LINE_NUM][MAX_FILE_LINE_LEN];
-extern word_pointer hashTable[hashSize][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
+extern word_pointer hashTable[HASH_TABLE_SIZE][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
 extern int compare; // �񱳿���Ƚ��
 extern char oneWord[15];
 extern char oneLine[MAX_FILE_LINE_LEN];

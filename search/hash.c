@@ -33,7 +33,16 @@ int hash(char* word) {
         poly = (poly << 1) | (poly >> (32-1));
         sum = (int)(poly * sum + *word++);
         compare++;
+<<<<<<< Updated upstream
     }
+=======
+        i++;
+    }
+//    for(i; i <8;i++) {
+//        poly = (poly << 1) | (poly >> (32-1));
+//        sum = (int)(poly * sum + 46);
+//    }
+>>>>>>> Stashed changes
 
     compare++;
     return sum % hashSize > 0? sum % hashSize: -1 * sum % hashSize;
@@ -67,6 +76,11 @@ void hashInsert() {
                 int tmpDocNum = i;
                 //line num
                 int tmpLineNum = j;
+
+                int index = hashValue;
+                while (hashTable[index][tmpDocNum]->word != NULL) {
+                    index = (index + 1) % hashSize; // linear insert
+                }
                  //word data
                 hashTable[hashValue][tmpDocNum]->cnt++;
                 queue_node_pointer tmp = (queue_node_pointer) malloc(sizeof(queue_node));
@@ -93,9 +107,17 @@ void search(){
     scanf("%s", oneWord);
 
     int hashValue = hash(oneWord);
-    printf("\n------------ Result ------------\n");
-    printf("Keyword: %s\n", oneWord);
-    printf("Total number of documents: %d\n", hashTable[hashValue][0]->cnt);
-    bst_show(hashTable[hashValue][0]->bst);
-    printf("\nTotal number of comparison: %d\n", compare);
+    int index = hashValue;
+
+    while (hashTable[index][0]->word != NULL) {
+        if (strcmp(hashTable[index][0]->word, oneWord) == 0) {
+            printf("\n------------ Result ------------\n");
+            printf("Keyword: %s\n", oneWord);
+            printf("Total number of documents: %d\n", hashTable[hashValue][0]->cnt);
+            bst_show(hashTable[hashValue][0]->bst);
+            printf("\nTotal number of comparison: %d\n", compare);
+            return;
+        }
+        index = (index + 1) % hashSize;
+    }
 }

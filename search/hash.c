@@ -3,7 +3,7 @@
 //call start of main
 void hashInit() {
     int j;
-    for (int i = 0; i < hashSize; i++)
+    for (int i = 0; i < HASH_TABLE_SIZE; i++)
     {
         for (j = 0; j < 101; j++)
         {
@@ -36,7 +36,7 @@ int hash(char* word) {
     }
 
     compare++;
-    return sum % hashSize > 0? sum % hashSize: -1 * sum % hashSize;
+    return sum % HASH_TABLE_SIZE > 0? sum % HASH_TABLE_SIZE: -1 * sum % HASH_TABLE_SIZE;
 }
 
 void hashInsert() {

@@ -19,7 +19,11 @@
 //maximum word length
 #define MAX_WORD_LEN 10
 //hashSize
+<<<<<<< Updated upstream
 #define hashSize 70000
+=======
+#define hashSize 100000
+>>>>>>> Stashed changes
 
 
 typedef struct queue_node* queue_node_pointer;

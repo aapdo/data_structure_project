@@ -28,20 +28,31 @@ void hashInit() {
 
 int hash(char* word) {
     int sum = 0;
+<<<<<<< Updated upstream
+=======
+//    int i = 0;
+>>>>>>> Stashed changes
     unsigned int poly = 0xEDB88320;
     while (*word) {
         poly = (poly << 1) | (poly >> (32-1));
         sum = (int)(poly * sum + *word++);
         compare++;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     }
 =======
         i++;
+=======
+//        i++;
+>>>>>>> Stashed changes
     }
 //    for(i; i <8;i++) {
 //        poly = (poly << 1) | (poly >> (32-1));
 //        sum = (int)(poly * sum + 46);
 //    }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
     compare++;
@@ -72,25 +83,51 @@ void hashInsert() {
 
                 //hashing
                 int hashValue = hash(token);
+                int index = hashValue;
                 //doc num
                 int tmpDocNum = i;
                 //line num
                 int tmpLineNum = j;
 
+<<<<<<< Updated upstream
                 int index = hashValue;
                 while (hashTable[index][tmpDocNum]->word != NULL) {
                     index = (index + 1) % hashSize; // linear insert
                 }
                  //word data
                 hashTable[hashValue][tmpDocNum]->cnt++;
+=======
+                while (hashTable[index][0]->word[0] != NULL && strcmp(hashTable[index][0]->word, token) != 0) {
+                    index = (index +1) % hashSize;
+
+                    if(index == hashValue) {
+                        printf("Full\n");
+                        return;
+                    }
+                }
+
+                //word data
+                hashTable[index][tmpDocNum]->cnt++;
+>>>>>>> Stashed changes
                 queue_node_pointer tmp = (queue_node_pointer) malloc(sizeof(queue_node));
                 tmp->line = tmpLineNum;
                 tmp->link = NULL;
-                enQueue(hashTable[hashValue][tmpDocNum]->lines, tmp);
+                enQueue(hashTable[index][tmpDocNum]->lines, tmp);
 
                 hashTable[hashValue][0]->cnt++;
-                strcpy(hashTable[hashValue][0]->word, token);
-                enQueueDoc(hashTable[hashValue][0]->lines, tmpDocNum);
+                strcpy(hashTable[index][0]->word, token);
+                enQueueDoc(hashTable[index][0]->lines, tmpDocNum);
+
+//                //word data
+//                hashTable[hashValue][tmpDocNum]->cnt++;
+//                queue_node_pointer tmp = (queue_node_pointer) malloc(sizeof(queue_node));
+//                tmp->line = tmpLineNum;
+//                tmp->link = NULL;
+//                enQueue(hashTable[hashValue][tmpDocNum]->lines, tmp);
+//
+//                hashTable[hashValue][0]->cnt++;
+//                strcpy(hashTable[hashValue][0]->word, token);
+//                enQueueDoc(hashTable[hashValue][0]->lines, tmpDocNum);
 
                 token = strtok(NULL, " \t\n");
             }
@@ -110,6 +147,7 @@ void search(){
     int index = hashValue;
 
     while (hashTable[index][0]->word != NULL) {
+<<<<<<< Updated upstream
         if (strcmp(hashTable[index][0]->word, oneWord) == 0) {
             printf("\n------------ Result ------------\n");
             printf("Keyword: %s\n", oneWord);
@@ -120,4 +158,26 @@ void search(){
         }
         index = (index + 1) % hashSize;
     }
+=======
+        if(strcmp(hashTable[index][0]->word, oneWord) == 0) {
+            return;
+        }
+        index = (index + 1) % hashSize;
+        if (index == hashValue) {
+            printf("NO\n");
+            return;
+        }
+    }
+
+    printf("\n------------ Result ------------\n");
+    printf("Keyword: %s\n", oneWord);
+    printf("Total number of documents: %d\n", hashTable[index][0]->cnt);
+    bst_show(hashTable[index][0]->bst);
+    printf("\nTotal number of comparison: %d\n", compare);
+//    printf("\n------------ Result ------------\n");
+//    printf("Keyword: %s\n", oneWord);
+//    printf("Total number of documents: %d\n", hashTable[hashValue][0]->cnt);
+//    bst_show(hashTable[hashValue][0]->bst);
+//    printf("\nTotal number of comparison: %d\n", compare);
+>>>>>>> Stashed changes
 }

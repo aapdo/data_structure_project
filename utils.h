@@ -19,12 +19,7 @@
 //maximum word length
 #define MAX_WORD_LEN 10
 //hashSize
-<<<<<<< HEAD
-#define HASH_TABLE_SIZE 70000
-=======
-#define hashSize 800000
->>>>>>> befc5c0e6716e057f0d7e636945bd4d0750c77b5
-
+#define HASH_TABLE_SIZE 800000
 
 typedef struct queue_node* queue_node_pointer;
 typedef struct queue_node{

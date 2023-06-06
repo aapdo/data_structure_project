@@ -1,10 +1,11 @@
 #include "data.h"
 char fileNames[MAX_FILE_NUM][MAX_FILE_NAME_LEN];
 char fileData[MAX_FILE_NUM][MAX_FILE_LINE_NUM][MAX_FILE_LINE_LEN];
-word_pointer hashTable[hashSize][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
+word_pointer hashTable[HASH_TABLE_SIZE][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
 int compare = 0; // �񱳿���Ƚ��
 char oneWord[15];
 char oneLine[MAX_FILE_LINE_LEN];
+int totalIndexedWords = 0;
 
 void enQueue(queue_pointer q, queue_node_pointer node){
     if (is_queue_empty(q)) {
@@ -130,7 +131,7 @@ void bst_show(tree_pointer ptr){
     queue_pointer q = wordPointer->lines;
     queue_node_pointer lineNode;
 
-    printf("<doc%03d.txt> (%s: %d)\n", docNum, oneWord, wordCnt);
+    printf("\n<doc%03d.txt> (%s: %d)\n", docNum, oneWord, wordCnt);
     for (int i = 0; i < wordCnt; ++i) {
         lineNode = deQueue(q);
         lineNum = lineNode->line;
@@ -145,8 +146,10 @@ void bst_show(tree_pointer ptr){
 void sortWords(){
     int countDoc = 0;
     int docNum = 0;
-    for (int i = 0; i < hashSize; i++)
+    bool flag = false;
+    for (int i = 0; i < HASH_TABLE_SIZE; i++)
     {
+        flag = false;
         countDoc = 0;
         while (1) {
             //hashTable에 각 단어를 포함하는 문서 번호를 한 개씩 가져옴.
@@ -154,7 +157,7 @@ void sortWords(){
             if (docNum == 0) {
                 break;
             }
-            //printf("hash: %d, doc: %d\n", i, docNum);
+            flag = true;
 
             if (hashTable[i][0]->bst != NULL) {
                 bst_insert(hashTable[i][0]->bst, hashTable[i][docNum]);
@@ -165,6 +168,9 @@ void sortWords(){
                 hashTable[i][0]->bst->left = NULL;
             }
             countDoc++;
+        }
+        if (flag == true) {
+            totalIndexedWords++;
         }
         hashTable[i][0]->cnt = countDoc;
     }

@@ -3,7 +3,7 @@
 //call start of main
 void hashInit() {
     int j;
-    for (int i = 0; i < hashSize; i++)
+    for (int i = 0; i < HASH_TABLE_SIZE; i++)
     {
         for (j = 0; j < 101; j++)
         {
@@ -15,22 +15,34 @@ void hashInit() {
             hashTable[i][j]->lines->front = NULL;
             hashTable[i][j]->lines->rear = NULL;
             hashTable[i][j]->bst = NULL;
+            hashTable[i][j]->word = NULL;
         }
+        hashTable[i][0]->word = (char*) malloc(sizeof(MAX_WORD_LEN));
     }
     readFile();
     hashInsert();
     sortWords();
+    printf("Total number of indexed words: %d\n", totalIndexedWords);
+    printf("Total number of comparison: %d\n", compare);
 }
 
 int hash(char* word) {
     int sum = 0;
+    int i = 0;
     unsigned int poly = 0xEDB88320;
     while (*word) {
         poly = (poly << 1) | (poly >> (32-1));
         sum = (int)(poly * sum + *word++);
+        compare++;
+        i++;
+    }
+    for(i; i <8;i++) {
+        poly = (poly << 1) | (poly >> (32-1));
+        sum = (int)(poly * sum + 46);
     }
 
-    return sum % hashSize > 0? sum % hashSize: -1 * sum % hashSize;
+    compare++;
+    return sum % HASH_TABLE_SIZE > 0? sum % HASH_TABLE_SIZE: -1 * sum % HASH_TABLE_SIZE;
 }
 
 void hashInsert() {
@@ -69,6 +81,7 @@ void hashInsert() {
                 enQueue(hashTable[hashValue][tmpDocNum]->lines, tmp);
 
                 hashTable[hashValue][0]->cnt++;
+                strcpy(hashTable[hashValue][0]->word, token);
                 enQueueDoc(hashTable[hashValue][0]->lines, tmpDocNum);
 
                 token = strtok(NULL, " \t\n");
@@ -80,13 +93,15 @@ void hashInsert() {
 
 void search(){
     fflush(stdin);
+    compare = 0;
     memset(oneWord, '\0', sizeof(oneWord));
     printf("enter the word: ");
     scanf("%s", oneWord);
 
     int hashValue = hash(oneWord);
-    printf("------------ Result ------------\n");
+    printf("\n------------ Result ------------\n");
     printf("Keyword: %s\n", oneWord);
-    printf("Total documents: %d\n", hashTable[hashValue][0]->cnt);
+    printf("Total number of documents: %d\n", hashTable[hashValue][0]->cnt);
     bst_show(hashTable[hashValue][0]->bst);
+    printf("\nTotal number of comparison: %d\n", compare);
 }

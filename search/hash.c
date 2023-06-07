@@ -66,9 +66,14 @@ void hashInsert() {
                 int tmpDocNum = i;
                 //line num
                 int tmpLineNum = j;
-                compare++;
-                while (strcmp(hashTable[index][0]->word, "") != 0 && strcmp(hashTable[index][0]->word, token) != 0) {
+                while (1){
+                    if(hashTable[index][0]->word[0] == '\0'){
+                        break;
+                    }
                     compare++;
+                    if(strcmp(hashTable[index][0]->word, token) == 0){
+                        break;
+                    }
                     index = (index +1) % HASH_TABLE_SIZE;
 
                     if(index == hashValue) {

@@ -29,7 +29,6 @@ void hashInit() {
 int hash(char* word) {
     int sum = 0;
     int i = 0;
-    compare++;
     unsigned int poly = 0xEDB88320;
     while (*word) {
         poly = (poly << 1) | (poly >> (32-1));
@@ -74,6 +73,7 @@ void hashInsert() {
                 int tmpDocNum = i;
                 //line num
                 int tmpLineNum = j;
+                compare++;
                  //word data
                 hashTable[hashValue][tmpDocNum]->cnt++;
                 queue_node_pointer tmp = (queue_node_pointer) malloc(sizeof(queue_node));

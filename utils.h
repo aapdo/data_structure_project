@@ -15,7 +15,7 @@
 //maximum file name length
 #define MAX_FILE_NAME_LEN 13
 //maximum sentence length
-#define MAX_FILE_LINE_LEN 200
+#define MAX_FILE_LINE_LEN 1050
 //maximum word length
 #define MAX_WORD_LEN 10
 //hashSize
@@ -51,7 +51,7 @@ typedef struct tree_node {
 extern char fileNames[MAX_FILE_NUM][MAX_FILE_NAME_LEN];
 extern char fileData[MAX_FILE_NUM][MAX_FILE_LINE_NUM][MAX_FILE_LINE_LEN];
 extern word_pointer hashTable[HASH_TABLE_SIZE][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
-extern int compare; // �񱳿���Ƚ��
+extern int compare;
 extern char oneWord[15];
 extern char oneLine[MAX_FILE_LINE_LEN];
 extern int totalIndexedWords;

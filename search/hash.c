@@ -29,17 +29,19 @@ void hashInit() {
 int hash(char* word) {
     int sum = 0;
     int i = 0;
+    compare++;
     unsigned int poly = 0xEDB88320;
     while (*word) {
         poly = (poly << 1) | (poly >> (32-1));
         sum = (int)(poly * sum + *word++);
-        compare++;
         i++;
     }
+    /*
     for(i; i <8;i++) {
         poly = (poly << 1) | (poly >> (32-1));
         sum = (int)(poly * sum + 46);
     }
+     */
 
     return sum % HASH_TABLE_SIZE > 0? sum % HASH_TABLE_SIZE: -1 * sum % HASH_TABLE_SIZE;
 }

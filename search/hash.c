@@ -65,7 +65,6 @@ void hashInsert() {
                     }
                 }
                 token[m] = '\0';
-
                 //hashing
                 int hashValue = hash(token);
                 int index = hashValue;

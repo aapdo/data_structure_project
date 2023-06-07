@@ -23,7 +23,7 @@
 typedef struct queue_node* queue_node_pointer;
 typedef struct queue_node{
     int line;
-queue_node_pointer link;
+    queue_node_pointer link;
 } queue_node;
 
 typedef struct queue* queue_pointer;

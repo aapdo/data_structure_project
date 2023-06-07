@@ -29,16 +29,10 @@ void hashInit() {
 
 int hash(char* word) {
     int sum = 0;
-    int i = 0;
     unsigned int poly = 0xEDB88320;
     while (*word) {
-        poly = (poly << 1) | (poly >> (32-1));
-        sum = (int)(poly * sum + *word++);
-        i++;
-    }
-    for(i; i <8;i++) {
-        poly = (poly << 1) | (poly >> (32-1));
-        sum = (int)(poly * sum + 46);
+        poly = (poly << 1) | (poly >> (32 - 1));
+        sum = (int) (poly * sum + *word++);
     }
 
     return sum % HASH_TABLE_SIZE > 0? sum % HASH_TABLE_SIZE: -1 * sum % HASH_TABLE_SIZE;
@@ -108,6 +102,12 @@ void search(){
     printf("enter the word: ");
     scanf("%s", oneWord);
 
+    for (int l = 0, m = 0; oneWord[l] != '\0'; l++) {
+        if (isalpha(oneWord[l])) {
+            oneWord[m++] = tolower(oneWord[l]);
+        }
+    }
+    
     int hashValue = hash(oneWord);
     int index = hashValue;
 

@@ -41,7 +41,6 @@ int hash(char* word) {
         sum = (int)(poly * sum + 46);
     }
 
-    compare++;
     return sum % HASH_TABLE_SIZE > 0? sum % HASH_TABLE_SIZE: -1 * sum % HASH_TABLE_SIZE;
 }
 

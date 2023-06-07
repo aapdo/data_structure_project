@@ -75,6 +75,7 @@ void hashInsert() {
                 int tmpLineNum = j;
                 while (1){
                     compare++;
+
                     if(hashTable[index][0]->word == NULL){
                         hashTable[index][0]->word = (char*) calloc(MAX_WORD_LEN, sizeof(MAX_WORD_LEN));
                         break;
@@ -127,7 +128,8 @@ void search(){
     int hashValue = hash(oneWord);
     int index = hashValue;
 
-    while (strcmp(hashTable[index][0]->word, "") != 0) {
+    while (hashTable[index][0]->word != NULL) {
+        compare++;
         if (strcmp(hashTable[index][0]->word, oneWord) == 0) {
             break;
         }

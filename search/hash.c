@@ -122,6 +122,7 @@ void search(){
             return;
         }
     }
+
     printf("\n------------ Result ------------\n");
     printf("Keyword: %s\n", oneWord);
     printf("Total number of documents: %d\n", hashTable[index][0]->cnt);

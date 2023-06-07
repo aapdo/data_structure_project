@@ -17,8 +17,8 @@ void hashInit() {
             hashTable[i][j]->bst = NULL;
             hashTable[i][j]->word = NULL;
         }
-        hashTable[i][0]->word = (char*) malloc(sizeof(MAX_WORD_LEN));
-        strcpy(hashTable[i][0]->word, "");
+        //hashTable[i][0]->word = (char*) malloc(sizeof(MAX_WORD_LEN));
+        //strcpy(hashTable[i][0]->word, "");
     }
     readFile();
     hashInsert();
@@ -34,14 +34,13 @@ int hash(char* word) {
     while (*word) {
         poly = (poly << 1) | (poly >> (32-1));
         sum = (int)(poly * sum + *word++);
-        compare++;
         i++;
     }
     for(i; i <8;i++) {
         poly = (poly << 1) | (poly >> (32-1));
         sum = (int)(poly * sum + 46);
     }
-    compare++;
+
     return sum % HASH_TABLE_SIZE > 0? sum % HASH_TABLE_SIZE: -1 * sum % HASH_TABLE_SIZE;
 }
 
@@ -74,8 +73,14 @@ void hashInsert() {
                 int tmpDocNum = i;
                 //line num
                 int tmpLineNum = j;
-
-                while (strcmp(hashTable[index][0]->word, "") != 0 && strcmp(hashTable[index][0]->word, token) != 0) {
+                while (1){
+                    compare++;
+                    if(hashTable[index][0]->word == NULL){
+                        hashTable[index][0]->word = (char*) calloc(MAX_WORD_LEN, sizeof(MAX_WORD_LEN));
+                        break;
+                    }else if(strcmp(hashTable[index][0]->word, token) == 0){
+                        break;
+                    }
                     index = (index +1) % HASH_TABLE_SIZE;
 
                     if(index == hashValue) {
@@ -83,7 +88,17 @@ void hashInsert() {
                         return;
                     }
                 }
+/*
+                while (strcmp(hashTable[index][0]->word, "") != 0 && strcmp(hashTable[index][0]->word, token) != 0) {
+                    hashTable[i][0]->word = (char*) malloc(sizeof(MAX_WORD_LEN));
+                    index = (index +1) % HASH_TABLE_SIZE;
 
+                    if(index == hashValue) {
+                        printf("Full\n");
+                        return;
+                    }
+                }
+*/
                 //word data
                 hashTable[index][tmpDocNum]->cnt++;
                 queue_node_pointer tmp = (queue_node_pointer) malloc(sizeof(queue_node));

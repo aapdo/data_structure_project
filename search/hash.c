@@ -17,7 +17,7 @@ void hashInit() {
             hashTable[i][j]->bst = NULL;
             hashTable[i][j]->word = NULL;
         }
-        hashTable[i][0]->word = (char*) calloc(MAX_WORD_LEN ,sizeof(MAX_WORD_LEN));
+        //hashTable[i][0]->word = (char*) calloc(MAX_WORD_LEN ,sizeof(MAX_WORD_LEN));
         //strcpy(hashTable[i][0]->word, "");
     }
     readFile();
@@ -73,7 +73,7 @@ void hashInsert() {
                 int tmpDocNum = i;
                 //line num
                 int tmpLineNum = j;
-                
+
                 while (1){
                     compare++;
 
@@ -100,6 +100,8 @@ void hashInsert() {
                         return;
                     }
                 }
+*/
+
                 //word data
                 hashTable[index][tmpDocNum]->cnt++;
                 queue_node_pointer tmp = (queue_node_pointer) malloc(sizeof(queue_node));
@@ -129,7 +131,6 @@ void search(){
     int index = hashValue;
 
     while (hashTable[index][0]->word != NULL) {
-    while (strcmp(hashTable[index][0]->word, "") != 0) {
         compare++;
         if (strcmp(hashTable[index][0]->word, oneWord) == 0) {
             break;
@@ -141,6 +142,7 @@ void search(){
             return;
         }
     }
+
     printf("\n------------ Result ------------\n");
     printf("Keyword: %s\n", oneWord);
     printf("Total number of documents: %d\n", hashTable[index][0]->cnt);

@@ -11,7 +11,7 @@
 //maximum file number
 #define MAX_FILE_NUM 150
 //maximum number of line in file
-#define MAX_FILE_LINE_NUM 851
+#define MAX_FILE_LINE_NUM 1000
 //maximum file name length
 #define MAX_FILE_NAME_LEN 13
 //maximum sentence length
@@ -19,8 +19,7 @@
 //maximum word length
 #define MAX_WORD_LEN 10
 //hashSize
-#define HASH_TABLE_SIZE 100000
-
+#define HASH_TABLE_SIZE 800000
 
 typedef struct queue_node* queue_node_pointer;
 typedef struct queue_node{

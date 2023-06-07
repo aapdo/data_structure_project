@@ -2,7 +2,7 @@
 char fileNames[MAX_FILE_NUM][MAX_FILE_NAME_LEN];
 char fileData[MAX_FILE_NUM][MAX_FILE_LINE_NUM][MAX_FILE_LINE_LEN];
 word_pointer hashTable[HASH_TABLE_SIZE][101]; // [hashsize][0~100], 0 : bst, 1~100 : doc
-int compare = 0; // �񱳿���Ƚ��
+int compare = 0;
 char oneWord[15];
 char oneLine[MAX_FILE_LINE_LEN];
 int totalIndexedWords = 0;

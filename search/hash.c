@@ -82,6 +82,7 @@ void hashInsert() {
                         return;
                     }
                 }
+                
                 //word data
                 hashTable[index][tmpDocNum]->cnt++;
                 queue_node_pointer tmp = (queue_node_pointer) malloc(sizeof(queue_node));

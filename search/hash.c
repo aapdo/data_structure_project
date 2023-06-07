@@ -29,20 +29,47 @@ void hashInit() {
 
 int hash(char* word) {
     int sum = 0;
-    int i = 0;
     unsigned int poly = 0xEDB88320;
     while (*word) {
         poly = (poly << 1) | (poly >> (32-1));
         sum = (int)(poly * sum + *word++);
         compare++;
-        i++;
-    }
-    for(i; i <8;i++) {
-        poly = (poly << 1) | (poly >> (32-1));
-        sum = (int)(poly * sum + 46);
     }
     compare++;
     return sum % HASH_TABLE_SIZE > 0? sum % HASH_TABLE_SIZE: -1 * sum % HASH_TABLE_SIZE;
+}
+
+int linearInsert(char* word) {
+    unsigned int index = hash(word);
+
+    if (strlen(hashTable[index][0]->word) > 0) {
+        if (strcmp(hashTable[index][0]->word, word) == 0 && hashTable[index][0]->cnt > 0) {
+            // 동일한 키 값이 이미 존재하며, 단어도 같은 경우 충돌이 아님
+            return index;
+        }
+
+        // 충돌 해결을 위한 선형 탐사
+        unsigned int nextIndex = (index + 1) % HASH_TABLE_SIZE;
+        while (nextIndex != index && strlen(hashTable[nextIndex][0]->word) > 0) {
+            if (strcmp(hashTable[nextIndex][0]->word, word) == 0 && hashTable[nextIndex][0]->word == word) {
+                // 동일한 키 값이 이미 존재하며, 단어도 같은 경우 충돌이 아님
+                return nextIndex;
+            }
+            nextIndex = (nextIndex + 1) % HASH_TABLE_SIZE;
+        }
+
+        // 빈 슬롯을 찾아 값을 삽입
+        if (strlen(hashTable[nextIndex][0]->word) == 0) {
+            index = nextIndex;
+        } else {
+            // 해시 테이블이 가득 찬 경우
+            fprintf(stderr, "Error: Hash table is full\n");
+            return -1;
+        }
+    }
+
+    // 새로운 키와 값을 삽입
+    return index;
 }
 
 void hashInsert() {
@@ -68,21 +95,21 @@ void hashInsert() {
                 token[m] = '\0';
 
                 //hashing
-                int hashValue = hash(token);
-                int index = hashValue;
+//                int hashValue = hash(token);
+                int index = linearInsert(token);
                 //doc num
                 int tmpDocNum = i;
                 //line num
                 int tmpLineNum = j;
 
-                while (strcmp(hashTable[index][0]->word, "") != 0 && strcmp(hashTable[index][0]->word, token) != 0) {
-                    index = (index +1) % HASH_TABLE_SIZE;
-
-                    if(index == hashValue) {
-                        printf("Full\n");
-                        return;
-                    }
-                }
+//                while (strcmp(hashTable[index][0]->word, "") != 0 && strcmp(hashTable[index][0]->word, token) != 0) {
+//                    index = (index +1) % HASH_TABLE_SIZE;
+//
+//                    if(index == hashValue) {
+//                        printf("Full\n");
+//                        return;
+//                    }
+//                }
 
                 //word data
                 hashTable[index][tmpDocNum]->cnt++;

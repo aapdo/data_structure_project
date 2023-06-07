@@ -15,7 +15,7 @@
 //maximum file name length
 #define MAX_FILE_NAME_LEN 13
 //maximum sentence length
-#define MAX_FILE_LINE_LEN 700
+#define MAX_FILE_LINE_LEN 1050
 //maximum word length
 #define MAX_WORD_LEN 10
 //hashSize

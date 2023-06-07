@@ -89,8 +89,10 @@ void hashInsert() {
                 tmp->link = NULL;
                 enQueue(hashTable[index][tmpDocNum]->lines, tmp);
 
+                if(hashTable[index][0]->cnt == 0){
+                    strcpy(hashTable[index][0]->word, token);
+                }
                 hashTable[index][0]->cnt++;
-                strcpy(hashTable[index][0]->word, token);
                 enQueueDoc(hashTable[index][0]->lines, tmpDocNum);
 
                 token = strtok(NULL, " \t\n");
